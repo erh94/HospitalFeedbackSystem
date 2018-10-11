@@ -1,1 +1,5 @@
 config.php
+connect.php
+index.php
+login.php
+sso_handler.php
