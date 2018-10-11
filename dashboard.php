@@ -38,7 +38,7 @@
     <link type="text/css" rel="stylesheet" href="style.css">
     <style>
         .container-fluid {
-            height: 20vh;
+            min-height: 20vh;
         }
 
         #form {
@@ -52,6 +52,17 @@
         #main {
             min-height: 60vh;
         }
+        .btn-small{
+            width: 75%;
+            margin: 10px;
+        }
+
+          .fix{
+    /* padding-top:30%;
+     */
+     margin-top:10%;
+     width:70%;
+  }
     </style>
     <script defer src="/js/fontawesome-all.min.js"></script>
     <script src="/js/Chart.bundle.min.js"></script>
@@ -61,23 +72,27 @@
 </head>
 
 <body>
-    <div class="container-fluid">
-        <div class="row light-blue darken-2 valign-wrapper">
-            <div class="col s8 m10 l10 xl10 center-align">
-                <h3>Hospital FeedBack System</h3>
-            </div>
-            <div class="col s4 m2 l2 xl2 center-align">
-                <a class="btn waves-effect waves-light" href="logout.php">Logout</a>
-            </div>
-            <?php
-        if ($_SESSION['admin']) {
-            echo '<div class="col s4 m2 l2 xl2 center-align">
-          <a class="btn waves-effect waves-light" href="showresponses.php">View Responses</a>
+<div class="container-fluid">
+    <div class="row light-blue darken-2">
+      <div class="col s12 m8 l8 xl8 center-align">
+        <h3>Hospital FeedBack System</h3>
+      </div>
+      
+      <div class="col s12 m4 l4 xl4">
+       <div class="row ">
+       <div class="fix col s6 center">
+        <a class="btn waves-effect waves-light" href="logout.php">Logout</a>
+      </div>
+      <?php 
+        if($_SESSION['admin']){
+          echo '<div class="fix col s6  center">
+          <a class="btn waves-effect waves-light" href="dashboard.php">View Responses</a>
         </div>';
         }
       ?>
-        </div>
+      </div>
     </div>
+  </div>
 
 
     <div id="main">
@@ -86,69 +101,70 @@
 
             <div class="row">
             <h6>Feedback by Admitted Patient</h6>
-            <div class="col m3">
+            <div class="col s12 m6 xl3">
             <canvas id="food-chart" width="20vh" height="20vh"></canvas>
             
             </div>
         
-            <div class="col m3">
+            <div class="col s12 m6 xl3">
             <canvas id="hygiene-chart" width="20vh" height="20vh"></canvas>
             
             </div>
             
-            <div class="col m3">
+            <div class="col s12 m6 xl3">
             <canvas id="MO-chart" width="20vh" height="20vh"></canvas>
             
             </div>
 
-            <div class="col m3">
+            <div class="col s12 m6 xl3">
             <canvas id="overallAdmit-chart" width="20vh" height="20vh"></canvas>
             
             </div>
             </div>
-
+            <br>
 
                <div class="row">
             <h6>Feedback for OPD</h6>
-            <div class="col m3">
+            <div class="col s12 m6 xl3">
             <canvas id="rate-chart" width="20vh" height="20vh"></canvas>
             
             </div>
         
-            <div class="col m3">
+            <div class="col s12 m6 xl3">
             <canvas id="waiting-chart" width="20vh" height="20vh"></canvas>
             
             </div>
             
-            <div class="col m3">
+            <div class="col s12 m6 xl3">
             <canvas id="overall-chart" width="20vh" height="20vh"></canvas>
             
             </div>
 
-            <div class="col m3">
+            <div class="col s12 m6 xl3">
             <canvas id="waitingS-chart" width="20vh" height="20vh"></canvas>
             
             </div>
             </div>
 
+<br>
                <div class="row">
             <h6>Feedback for Specialist</h6>
-            <div class="col m3">
+            <div class="col s12 m6 xl3">
             <canvas id="clash-chart" width="20px" height="20px"></canvas>
             
             </div>
         
-            <div class="col m3">
+            <div class="col s12 m6 xl3">
             <canvas id="admitted-chart" width="20px" height="20px"></canvas>
             
             </div>
             
-            <div class="col m3">
+            <div class="col s12 m6 xl3">
             <canvas id="rateS-chart" width="20px" height="20px"></canvas>
             
             </div>
 
-            <div class="col m3">
+            <div class="col s12 m6 xl3">
             <canvas id="overallSpecialist-chart" width="20vh" height="20vh"></canvas>
             
             </div>
@@ -157,15 +173,37 @@
 
             
             <div class="row">
+            <h6 class="col s12">Download CSV Responses</h6>
+            <div class="col s12 m6 xl3">
+            <a onclick="CSVDownload('OPD')" id="OPD" class="waves-effect waves-light btn-small">
+                    <i class="material-icons right">cloud_download</i>OPD Responses</a>&nbsp;&nbsp;
+            </div>
+
+            <div class="col s12 m6 xl3">
+            <a onclick="CSVDownload('spc')" id="specialist" class="waves-effect waves-light btn-small">
+                    <i class="material-icons right">cloud_download</i>Specialist Responses</a>&nbsp;&nbsp;
+            </div>
                 
-                <a onclick="CSVDownload('OPD')" id="OPD" class="waves-effect waves-light btn-small">
-                    <i class="material-icons right">cloud_download</i>OPD Responses</a>
-                <a onclick="CSVDownload('spc')" id="specialist" class="waves-effect waves-light btn-small">
-                    <i class="material-icons right">cloud_download</i>Specialist Responses</a>
-                <a onclick="CSVDownload('adm')" id="Admitted" class="waves-effect waves-light btn-small">
-                    <i class="material-icons right">cloud_download</i>Admitted Responses</a>
-                <a onclick="CSVDownload('sugg')" id="suggestions" class="waves-effect waves-light btn-small">
-                    <i class="material-icons right">cloud_download</i>Suggestions Responses</a>
+
+            <div class="col s12 m6 xl3">
+            <a onclick="CSVDownload('adm')" id="Admitted" class="waves-effect waves-light btn-small">
+                    <i class="material-icons right">cloud_download</i>Admitted Responses</a>&nbsp;&nbsp;
+            </div>
+
+
+            <div class="col s12 m6 xl3">
+            <a onclick="CSVDownload('sugg')" id="suggestions" class="waves-effect waves-light btn-small">
+                    <i class="material-icons right">cloud_download</i>Suggestions Responses</a>&nbsp;&nbsp;
+            </div>
+
+
+            <!-- <div class="col s12 m6 xl3">
+            </div> -->
+
+
+                
+                
+                
                 <!-- <a  onclick="CSVDownload('all')" id="all" class="waves-effect waves-light btn-small green">
                     <i class="material-icons right">cloud_download</i>All Responses</a> -->
 

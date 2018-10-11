@@ -39,38 +39,49 @@
   <style>
   
   .container-fluid{
-    height :20vh;
+    min-height :30vh;
   }
   
   #form{
-    min-height:62%;
+    min-height:65vh;
   }
 
   .footer{
-    height:14vh;
+    min-height:14vh;
   }
   
+  .fix{
+    /* padding-top:30%;
+     */
+     margin-top:10%;
+     width:70%;
+  }
   
   </style>
   <script defer src="/js/fontawesome-all.min.js"></script>
 </head>
 
 <body>
+
   <div class="container-fluid">
-    <div class="row light-blue darken-2 valign-wrapper">
-      <div class="col s8 m10 l10 xl10 center-align">
+    <div class="row light-blue darken-2">
+      <div class="col s12 m8 l8 xl8 center-align">
         <h3>Hospital FeedBack System</h3>
       </div>
-      <div class="col s4 m2 l2 xl2 center-align">
+      
+      <div class="col s12 m4 l4 xl4">
+       <div class="row ">
+       <div class="fix col s6 center">
         <a class="btn waves-effect waves-light" href="logout.php">Logout</a>
       </div>
       <?php 
         if($_SESSION['admin']){
-          echo '<div class="col s4 m2 l2 xl2 center-align">
-          <a class="btn waves-effect waves-light" href="showresponses.php">View Responses</a>
+          echo '<div class="fix col s6  center">
+          <a class="btn waves-effect waves-light" href="dashboard.php">View Responses</a>
         </div>';
         }
       ?>
+      </div>
     </div>
   </div>
   <div id="form" class="container">
